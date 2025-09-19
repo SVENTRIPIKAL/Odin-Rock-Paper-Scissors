@@ -10,6 +10,10 @@ const ONE = 1
 const TWO = 2
 const THREE = 3
 
+// player scores
+let humanScore = ZERO
+let computerScore = ZERO
+
 
 // return number from 0-2 randomly
 function getComputerChoice() { 
