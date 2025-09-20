@@ -154,6 +154,7 @@ function playRound(humanChoice, computerChoice) {
                 }
             }; break;
     }
+    // display results
     alert(output)
     alert(`SCORE:\nPlayer: ${humanScore}    Computer: ${computerScore}`)
 }
