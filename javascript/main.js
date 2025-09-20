@@ -85,12 +85,12 @@ function increaseScore(winner) {
 // updates message to display winner & loser choices
 function getFormattedMsg(message, humanChoice, computerChoice) {
     let temp = null
-    if (message == LOSER_MSG) {
-        temp = message.replace(ASTERISK2, computerChoice)
-        temp = temp.replace(ASTERISK, humanChoice)
-    } else {
+    if (message == WINNER_MSG) {
         temp = message.replace(ASTERISK2, humanChoice)
         temp = temp.replace(ASTERISK, computerChoice)
+    } else {
+        temp = message.replace(ASTERISK2, computerChoice)
+        temp = temp.replace(ASTERISK, humanChoice)
     }
     return temp
 }
