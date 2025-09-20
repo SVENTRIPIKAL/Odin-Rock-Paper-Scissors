@@ -3,7 +3,7 @@ function playGame() {
     
     // string constants
     const PLAYER = "Player"
-    const COMPUTER = "Compuer"
+    const COMPUTER = "Computer"
     const ROCK = "Rock"
     const PAPER = "Paper"
     const SCISSORS = "Scissors"
