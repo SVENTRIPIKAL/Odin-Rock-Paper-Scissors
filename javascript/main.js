@@ -4,6 +4,8 @@ const PAPER = "Paper"
 const SCISSORS = "Scissors"
 const INPUT_MSG = "Enter [Rock|Paper|Scissors]: "
 const DRAW_MSG = "Draw!"
+const ASTERISK = "*"
+const ASTERISK2 = "**"
 const WINNER_MSG = "You Win! ** beats *"
 const LOSER_MSG = "You Lose! ** beats *"
 
@@ -80,6 +82,19 @@ function increaseScore(winner) {
     else { computerScore++ }
 }
 
+// updates message to display winner & loser choices
+function getFormattedMsg(message, humanChoice, computerChoice) {
+    let temp = null
+    if (message == LOSER_MSG) {
+        temp = message.replace(ASTERISK2, computerChoice)
+        temp = temp.replace(ASTERISK, humanChoice)
+    } else {
+        temp = message.replace(ASTERISK2, humanChoice)
+        temp = temp.replace(ASTERISK, computerChoice)
+    }
+    return temp
+}
+
 // iterates a single round & increases scores according to winner
 function playRound(humanChoice, computerChoice) {
     let output = null
@@ -89,11 +104,15 @@ function playRound(humanChoice, computerChoice) {
                 switch(computerChoice) {
                     case ROCK: { output = DRAW_MSG }; break;
                     case PAPER: { 
-                        output = LOSER_MSG 
+                        output = getFormattedMsg(
+                            LOSER_MSG, humanChoice, computerChoice
+                        )
                         increaseScore()
                     }; break;
                     default: { 
-                        output = WINNER_MSG 
+                        output = getFormattedMsg(
+                            WINNER_MSG, humanChoice, computerChoice
+                        )
                         increaseScore(HUMAN)
                     }; break;
                 }
@@ -102,12 +121,16 @@ function playRound(humanChoice, computerChoice) {
             {   // computer choices & outcomes
                 switch(computerChoice) {
                     case ROCK: { 
-                        output = WINNER_MSG 
+                        output = getFormattedMsg(
+                            WINNER_MSG, humanChoice, computerChoice
+                        )
                         increaseScore(HUMAN)
                     }; break;
                     case PAPER: { output = DRAW_MSG }; break;
                     default: { 
-                        output = LOSER_MSG 
+                        output = getFormattedMsg(
+                            LOSER_MSG, humanChoice, computerChoice
+                        )
                         increaseScore()
                     }; break;
                 }
@@ -116,11 +139,15 @@ function playRound(humanChoice, computerChoice) {
             {   // computer choices & outcomes
                 switch(computerChoice) {
                     case ROCK: { 
-                        output = LOSER_MSG 
+                        output = getFormattedMsg(
+                            LOSER_MSG, humanChoice, computerChoice
+                        )
                         increaseScore()
                     }; break;
                     case PAPER: {
-                        output = WINNER_MSG
+                        output = getFormattedMsg(
+                            WINNER_MSG, humanChoice, computerChoice
+                        )
                         increaseScore(HUMAN)
                     }; break;
                     default: { output = DRAW_MSG }; break;
