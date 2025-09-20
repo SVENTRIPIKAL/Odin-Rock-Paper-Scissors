@@ -39,9 +39,9 @@ function getComputerChoice() {
 
 // returns string with first letter upper cased
 function toTitleCase(string) {
-    let temp = string.toLowerCase()
-    temp = temp[ZERO].toUpperCase() + temp.slice(ONE)
-    return temp
+    let titleCased = string.toLowerCase()
+    titleCased = titleCased[ZERO].toUpperCase() + titleCased.slice(ONE)
+    return titleCased
 }
 
 // prompts user for rock, paper, scissors input
@@ -66,16 +66,6 @@ function getHumanChoice() {
     return choice
 }
 
-// return a choice according to player
-function getChoice(player) {
-    return (() => {
-        switch(player) {
-            case HUMAN: return getHumanChoice()
-            default: return getComputerChoice()
-        }
-    })()
-}
-
 // increases score according to winning player
 function increaseScore(winner) {
     if (winner == HUMAN) { humanScore++ }
@@ -84,15 +74,15 @@ function increaseScore(winner) {
 
 // updates message to display winner & loser choices
 function getFormattedMsg(message, humanChoice, computerChoice) {
-    let temp = null
+    let formatted = null
     if (message == WINNER_MSG) {
-        temp = message.replace(ASTERISK2, humanChoice)
-        temp = temp.replace(ASTERISK, computerChoice)
+        formatted = message.replace(ASTERISK2, humanChoice)
+        formatted = formatted.replace(ASTERISK, computerChoice)
     } else {
-        temp = message.replace(ASTERISK2, computerChoice)
-        temp = temp.replace(ASTERISK, humanChoice)
+        formatted = message.replace(ASTERISK2, computerChoice)
+        formatted = formatted.replace(ASTERISK, humanChoice)
     }
-    return temp
+    return formatted
 }
 
 // iterates a single round & increases scores according to winner
@@ -160,4 +150,4 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
-playRound(getChoice(HUMAN), getChoice())
+playRound(getHumanChoice(), getComputerChoice())
