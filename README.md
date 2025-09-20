@@ -1,4 +1,4 @@
-# odin-rock-paper-scissors
+# Odin-Rock-Paper-Scissors
 A quick 5-round game of Rock, Paper, Scissors that is played against a Computer and was built for _[The Odin Project](https://www.theodinproject.com/about)_
 
 ## Examples
