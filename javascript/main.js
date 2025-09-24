@@ -18,7 +18,7 @@ function playGame() {
     // integer constants
     const ZERO = 0
     const ONE = 1
-    const FIVE = 5
+    const THREE = 3
     
     // boolean constant
     const HUMAN = true
@@ -51,7 +51,7 @@ function playGame() {
         }
         return formatted
     }
-
+    
     // iterates a single round & increases scores according to winner
     function playRound(humanChoice, computerChoice) {
         // assign temp value
@@ -113,14 +113,31 @@ function playGame() {
                     }
                 }; break;
         }
+        
         // display results
         alert(output)
         alert(`SCORE:\nPlayer: ${humanScore}    Computer: ${computerScore}`)
+        
+        // check if game is over
+        if(humanScore == THREE || computerScore == THREE) {
+            // assign winner
+            let winner = null
+            if (humanScore > computerScore) { winner = PLAYER }
+            else if (computerScore > humanScore) { winner = COMPUTER }
+            
+            // display end-game results
+            if (winner == null) { alert(GAME_DRAW_MSG) }
+            else { alert(GAME_WIN_MSG.replace(ASTERISK, winner)) }
+            
+            alert("Starting New Game!")
+            
+            // reload page to reset scores
+            window.location.reload()
+        }
     }
     
     // return computer choice at random
     function getComputerChoice() { 
-        const THREE = 3
         return (() => {
             // get random number 0-2
             let choice = Math.floor(Math.random() * THREE)
@@ -139,44 +156,22 @@ function playGame() {
         titleCased = titleCased[ZERO].toUpperCase() + titleCased.slice(ONE)
         return titleCased
     }
-
-    // prompts user for rock, paper, scissors input
-    function getHumanChoice() {
-        // input message
-        const INPUT_MSG = "Enter [Rock|Paper|Scissors]: "
-        // assign temp value
-        let choice = null
-        // loop until valid input
-        while(true) {
-            // get user input
-            let temp = prompt(INPUT_MSG)
-            // make string TitleCased
-            let input = toTitleCase(temp)
-            // check input & assign choice if valid
-            switch (input) {
-                case ROCK:
-                case PAPER:
-                case SCISSORS: choice = input; break;
-            }
-            // break from loop when input valid
-            if (choice != null) break
-        }
-        return choice
+    
+    // assign listeners to html elements
+    function setup() {
+        // add click listener to buttons
+        let buttons = document.querySelectorAll("button")
+        buttons.forEach((it) => {
+            it.addEventListener(
+                "click", 
+                () => playRound(toTitleCase(it.textContent), getComputerChoice())
+            )
+        })
     }
     
-    // play 1 round
-    playRound(getHumanChoice(), getComputerChoice())
-    
-    // assign winner
-    let winner = null
-    if (humanScore > computerScore) { winner = PLAYER }
-    else if (computerScore > humanScore) { winner = COMPUTER }
-    
-    // display end-game results
-    if (winner == null) { alert(GAME_DRAW_MSG) }
-    else { alert(GAME_WIN_MSG.replace(ASTERISK, winner)) }
+    // setup game html elements
+    setup()
 }
 
-
 // run the game
-//playGame()
+playGame()
