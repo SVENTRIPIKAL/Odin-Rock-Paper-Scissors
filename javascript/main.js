@@ -164,11 +164,8 @@ function playGame() {
         return choice
     }
     
-    
-    // loop for 5 rounds
-    for (let i = ONE; i <= FIVE; i++) {
-        playRound(getHumanChoice(), getComputerChoice())
-    }
+    // play 1 round
+    playRound(getHumanChoice(), getComputerChoice())
     
     // assign winner
     let winner = null
