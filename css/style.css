@@ -1,0 +1,28 @@
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.prompt {
+    margin-block: 100px;
+}
+
+#buttons-container {
+    display: flex;
+    gap: 100px;
+}
+
+
+/* SELECTOR GROUPS */
+* {
+    box-sizing: border-box;
+}
+
+button {
+    width: 130px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding-block: 10px;
+}

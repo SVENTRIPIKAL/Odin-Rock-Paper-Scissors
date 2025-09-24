@@ -179,4 +179,4 @@ function playGame() {
 
 
 // run the game
-playGame()
+//playGame()
